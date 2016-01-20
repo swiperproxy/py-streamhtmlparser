@@ -83,7 +83,7 @@ cdef class HtmlParser:
 
     def parse_until_rewritable(self, s):
         return streamhtmlparser.htmlparser_parse_until_rewritable(self.parser,
-																  s, len(s))
+                                                                  s, len(s))
 
     def parse_until(self, s, states):
         cdef int *c_states
@@ -95,13 +95,13 @@ cdef class HtmlParser:
 
         if not c_states:
             raise MemoryError()
-    
+
         for i in range(len(states)):
             c_states[i] = states[i]
         c_states[i + 1] = -1
 
         retval = streamhtmlparser.htmlparser_parse_until(self.parser, s, len(s),
-														 c_states)
+                                                         c_states)
         free(c_states)
         return retval
 
@@ -115,7 +115,7 @@ cdef class HtmlParser:
 
         if not c_states:
             raise MemoryError()
-    
+
         for i in range(len(states)):
             c_states[i * 2] = states[i][0]
             c_states[i * 2 + 1] = states[i][1]
@@ -123,8 +123,8 @@ cdef class HtmlParser:
         c_states[i * 2 + 2] = -1
 
         retval=streamhtmlparser.htmlparser_parse_until_statechange(self.parser,
-																   s, len(s),
-																   c_states)
+                                                                   s, len(s),
+                                                                   c_states)
         free(c_states)
         return retval
 
@@ -139,7 +139,7 @@ cdef class HtmlParser:
         t = streamhtmlparser.htmlparser_tag(self.parser)
         if t == NULL:
             return None
-        return t 
+        return t
 
     def attr(self):
         cdef char *a
@@ -197,4 +197,3 @@ cdef class HtmlParser:
 
     def insert_text(self):
         return streamhtmlparser.htmlparser_insert_text(self.parser)
-

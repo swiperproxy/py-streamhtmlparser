@@ -1,4 +1,4 @@
-# Copyright (c) 2014-2015 SwiperProxy Team
+# Copyright (c) 2014-2016 SwiperProxy Team
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -35,4 +35,3 @@ setup(
     cmdclass = {'build_ext': build_ext},
     ext_modules = ext_modules
 )
-
